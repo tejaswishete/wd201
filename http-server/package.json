@@ -1,0 +1,14 @@
+{
+  "name": "http-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tejaswi Shete <tejaswishete2003@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "minimist": "^1.2.8"
+  },
+  "description": ""
+}
