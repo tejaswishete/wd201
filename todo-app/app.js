@@ -3,15 +3,25 @@ const express = require("express");
 const app = express();
 const { Todo } = require("./models");
 const bodyParser = require("body-parser");
-app.use(bodyParser.json());
+const path = require("path");
 
+app.use(bodyParser.json());
 app.set("view engine", "ejs");
 
-app.get("/", function (request, response) {
-  response.render("index");
+app.get("/",(request, response) => {
+   const allTodos = awaitTodo.getTodos();
+  if( request.accepts("html")) {
+    response.render("index", {
+      allTodos
+    });  
+  } else {
+    response.json({
+      allTodos  
+    })
+  }
 });
-
-app.get("/todos", async function (_request, response) {
+app.use(express.static(path.join(__dirname,'public')));
+app.get("/todos", async function (request, response) {
   console.log("Processing list of all Todos ...");
   
   try {
@@ -23,7 +33,6 @@ app.get("/todos", async function (_request, response) {
   }
 
 });
-
 app.get("/todos/:id", async function (request, response) {
   try {
     const todo = await Todo.findByPk(request.params.id);
@@ -33,7 +42,6 @@ app.get("/todos/:id", async function (request, response) {
     return response.status(422).json(error);
   }
 });
-
 app.post("/todos", async function (request, response) {
   try {
     const todo = await Todo.addTodo(request.body);
@@ -43,7 +51,6 @@ app.post("/todos", async function (request, response) {
     return response.status(422).json(error);
   }
 });
-
 app.put("/todos/:id/markAsCompleted", async function (request, response) {
   const todo = await Todo.findByPk(request.params.id);
   try {
@@ -54,7 +61,6 @@ app.put("/todos/:id/markAsCompleted", async function (request, response) {
     return response.status(422).json(error);
   }
 });
-
 app.delete("/todos/:id", async function (request, response) {
   console.log("We have to delete a Todo with ID: ", request.params.id);
   const deleteTodo = await Todo.destroy({ where: { id: request.params.id } });
