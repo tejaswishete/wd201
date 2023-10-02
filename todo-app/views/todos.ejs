@@ -1,28 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your To-Do List</title>
+
+  <!-- Updated CSS styles for the template -->
+  <style>
+    /* Styles for the titles */
+    h5 {
+      font-size: 1.2rem;
+      color: #333; /* Dark gray text color */
+      margin-bottom: 10px;
+    }
+
+    /* Styles for the count badges */
+    .count-badge {
+      background-color: #007BFF; /* Blue background color */
+      color: #fff; /* White text color */
+      padding: 5px 10px;
+      border-radius: 10px;
+      font-weight: bold;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    /* Styles for the list items */
+    .Todo-Item {
+      background-color: #f5f5f5; /* Light gray background color */
+      border: 1px solid #ddd; /* Light gray border */
+      border-radius: 5px;
+      margin: 5px 0;
+      padding: 10px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .Todo-Item:hover {
+      background-color: #007BFF; /* Blue background color on hover */
+      color: #fff; /* White text color on hover */
+    }
+
+    /* Styles for the trash icon */
+    .trash-icon {
+      display: inline-block;
+      margin-left: 10px;
+      color: #ff0000; /* Red color for the trash icon */
+      cursor: pointer;
+    }
+  </style>
+
+<body>
+  <!-- Your original HTML template with updated CSS -->
+  <!-- todo.ejs file -->
+
 <div>
-        <h5>Overdue</h5>
-        <ul class="list-none">
-          <li class="Todo-Item">
-            <div class="flex items-center w-fit my-2 px-2 py-1 rounded hover:bg-purple-50">
-              <input id="todo-checkbox-1" type="checkbox">
-              <label for="todo-checkbox-1" class="ml-2 text-sm text-gray-600">Have to pay electricity bill</label>
-              <a href="#" class="hidden trash-icon ml-2">
-               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                 <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-               </svg>
-              </a>
-            </div>
-          </li>
-          <li class="Todo-Item">
-            <div class="flex items-center w-fit my-2 px-2 py-1 rounded hover:bg-purple-50">
-              <input id="todo-checkbox-2" type="checkbox">
-              <label for="todo-checkbox-2" class="ml-2 text-sm text-gray-600">Recharge mobile</label>
-              <a href="#" class="hidden trash-icon ml-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                </svg>
-               </a>
-          </li>
-        </ul>
-        <h5>Due Today</h5>
-        <h5>Due Later </h5>
-       </div>
+  <h5 style="display:inline">Overdue</h5> <span style="display:inline" id='count-overdue' class="bg-gray-200 text-black px-3 py-1 rounded font-medium mr-2 mb-2">2</span>
+  <ul class="list-none">
+    <li class="Todo-Item">
+      <div class="flex items-center w-fit my-2 px-2 py-1 rounded hover:bg-purple-50">
+        <input id="todo-checkbox-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border ">
+        <label for="todo-checkbox-1" class="ml-2 text-sm text-gray-600 cursor-pointer"> Study Material </label>
+        <a href="#" class="hidden trash-icon ml-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+          </svg> 
+        </a>            
+      </div>
+    </li>
+
+    <li class="Todo-Item" >
+      <div class="flex items-center w-fit my-2 px-2 py-1 rounded hover:bg-purple-50">
+        <input id="todo-checkbox-2" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border ">
+        <label for="todo-checkbox-2" class="ml-2 text-sm text-gray-600 cursor-pointer"> Books </label>
+        <a href="#" class="hidden trash-icon ml-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+          </svg> 
+        </a>
+      </div>
+    </li>
+  </ul>
+
+  <h5 style="display:inline">Due Today</h5> <span style="text-align:right" id='count-due-today' class="bg-gray-200 text-black px-3 py-1 rounded font-medium mr-2 mb-2">1</span>
+  <ul class="list-none">
+    <li class="Todo-Item" >
+      <div class="flex items-center w-fit my-2 px-2 py-1 rounded hover:bg-purple-50">
+        <input id="todo-checkbox-4" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border ">
+        <label for="todo-checkbox-4" class="ml-2 text-sm text-gray-600 cursor-pointer"> I'd Card </label>
+        <a href="#" class="hidden trash-icon ml-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+          </svg> 
+        </a>
+      </div>
+    </li>
+  </ul>
+  
+  <h5 style="display:inline">Due Later</h5> <span style="text-align:right" id='count-due-later' class="bg-gray-200 text-black px-3 py-1 rounded font-medium mr-2 mb-2">1</span>
+  <ul class="list-none">
+    <li class="Todo-Item" >
+      <div class="flex items-center w-fit my-2 px-2 py-1 rounded hover:bg-purple-50">
+        <input id="todo-checkbox-6" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border ">
+        <label for="todo-checkbox-6" class="ml-2 text-sm text-gray-600 cursor-pointer"> Assignments </label>
+        <a href="#" class="hidden trash-icon ml-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+          </svg> 
+        </a>
+      </div>
+    </li>
+  </ul>
+</div>
+</head>
+</html>
