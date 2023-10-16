@@ -1,3 +1,4 @@
+// app.js file /views / todo-app
 const express = require("express");
 const app = express();
 var csrf = require("tiny-csrf");
@@ -88,7 +89,6 @@ app.get("/", async (request, response) => {
     // Redirect to "/todos" if the user is logged in
     return response.redirect("/todos");
   }
-  // for non-logged-in users
   response.render("index", {
     title: "Todo Application",
     csrfToken: request.csrfToken(),
@@ -140,18 +140,10 @@ app.post("/users", async (request, response) => {
     request.flash("error", "First name cannot be empty!");
     return response.redirect("/signup");
   }
-
-  if (request.body.lastName.length == 0) {
-    request.flash("error", "Last name cannot be empty!");
-    return response.redirect("/signup");
-  }
-
   if (request.body.password.length < 8) {
     request.flash("error", "Password must be at least 8 characters");
     return response.redirect("/signup");
   }
-
-  //hashing the password
   const hashedPwd = await bcrypt.hash(request.body.password, saltRounds);
   //have to create a user
   console.log(request.user);
@@ -295,5 +287,4 @@ app.delete(
     }
   },
 );
-
 module.exports = app;
